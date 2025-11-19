@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Alert, CircularProgress, Stack, Typography } from "@mui/material";
+import {
+  Alert,
+  CircularProgress,
+  Stack,
+  styled,
+  Typography,
+} from "@mui/material";
 
 import { getMetricsState } from "../../model/selectors/getMetricsState.ts";
 import { MetricCard } from "../MetricCard/MetricCard.tsx";
@@ -8,6 +14,18 @@ import { fetchMetrics } from "../../api/fetchMetrics.ts";
 
 import { formatMoney } from "@/shared/lib";
 import { useAppDispatch } from "@/shared/hooks";
+
+const StyledContainer = styled(Stack)(({ theme }) => ({
+  width: "100%",
+  flexDirection: "row",
+  alignItems: "flex-start",
+  gap: theme.spacing(2),
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+    alignItems: "stretch",
+    marginTop: theme.spacing(1),
+  },
+}));
 
 export const MetricsList = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +60,7 @@ export const MetricsList = () => {
   }
 
   return (
-    <Stack width={"100%"} direction="row" spacing={2}>
+    <StyledContainer>
       <MetricCard
         title={"Расходы"}
         value={formatMoney(data.expenses.value)}
@@ -67,6 +85,6 @@ export const MetricsList = () => {
         change={data.cpa.change}
         changeType={data.cpa.changeType}
       />
-    </Stack>
+    </StyledContainer>
   );
 };
