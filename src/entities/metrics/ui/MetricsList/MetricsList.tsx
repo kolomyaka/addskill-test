@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { fetchMetrics } from "../../model/api/fetchMetrics.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert, CircularProgress, Stack, Typography } from "@mui/material";
+
+import { fetchMetrics } from "../../model/api/fetchMetrics.ts";
 import { getMetricsState } from "../../model/selectors/getMetricsState.ts";
 import { MetricCard } from "../MetricCard/MetricCard.tsx";
+
 import { formatMoney } from "@/shared/lib";
 
 export const MetricsList = () => {
@@ -37,7 +39,6 @@ export const MetricsList = () => {
       </Stack>
     );
   }
-  console.log(data);
 
   return (
     <Stack width={"100%"} direction="row" spacing={2} mt={2}>

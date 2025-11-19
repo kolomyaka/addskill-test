@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+
 import { fetchMetrics } from "../api/fetchMetrics.ts";
 import type { MetricsResponse, MetricsSchema } from "../types/metrics.types.ts";
 

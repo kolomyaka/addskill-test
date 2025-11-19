@@ -1,7 +1,9 @@
 import { Stack, Typography } from "@mui/material";
-import { CardComponent } from "@/shared/ui";
+
 import IncreaseIcon from "../../assets/increase-icon.svg?react";
 import DecreaseIcon from "../../assets/decrease-icon.svg?react";
+
+import { CardComponent } from "@/shared/ui";
 
 interface MetricsCardProps {
   value: string | number;

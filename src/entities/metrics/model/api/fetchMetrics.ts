@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import type { MetricsResponse } from "../types/metrics.types.ts";
 
 export const fetchMetrics = createAsyncThunk<MetricsResponse>(

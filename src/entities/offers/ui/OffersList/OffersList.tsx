@@ -1,3 +1,5 @@
+import { CardComponent } from "@/shared/ui";
+
 export const OffersList = () => {
-  return null;
+  return <CardComponent></CardComponent>;
 };
