@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import type { MetricsResponse } from "../types/metrics.types.ts";
-
-export const fetchMetrics = createAsyncThunk<MetricsResponse>(
+export const fetchMetrics = createAsyncThunk(
   "metrics/fetchMetrics",
   async () => {
     await new Promise((res) => setTimeout(res, 500));

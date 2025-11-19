@@ -1,32 +1,32 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import { fetchMetrics } from "../../api/fetchMetrics.ts";
-import type { MetricsResponse, MetricsSchema } from "../types/metrics.types.ts";
+import type { Offer, OffersSchema } from "../types/offers.types.ts";
+import { fetchOffers } from "../../api/fetchOffers.ts";
 
-const initialState: MetricsSchema = {
+const initialState: OffersSchema = {
   loading: false,
   error: null,
   data: undefined,
 };
 
-export const metricsSlice = createSlice({
-  name: "metricsSlice",
+export const offersSlice = createSlice({
+  name: "offersSlice",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchMetrics.pending, (state) => {
+      .addCase(fetchOffers.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(
-        fetchMetrics.fulfilled,
-        (state, action: PayloadAction<MetricsResponse>) => {
+        fetchOffers.fulfilled,
+        (state, action: PayloadAction<Offer[]>) => {
           state.data = action.payload;
           state.loading = false;
         },
       )
-      .addCase(fetchMetrics.rejected, (state, action) => {
+      .addCase(fetchOffers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Unknown error occurred";
       });

@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Alert, CircularProgress, Stack, Typography } from "@mui/material";
 
-import { fetchMetrics } from "../../model/api/fetchMetrics.ts";
 import { getMetricsState } from "../../model/selectors/getMetricsState.ts";
 import { MetricCard } from "../MetricCard/MetricCard.tsx";
+import { fetchMetrics } from "../../api/fetchMetrics.ts";
 
 import { formatMoney } from "@/shared/lib";
+import { useAppDispatch } from "@/shared/hooks";
 
 export const MetricsList = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { loading, error, data } = useSelector(getMetricsState);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export const MetricsList = () => {
 
   if (loading) {
     return (
-      <Stack alignItems="center" mt={2}>
+      <Stack alignItems="center">
         <CircularProgress />
       </Stack>
     );
@@ -26,7 +27,7 @@ export const MetricsList = () => {
 
   if (error) {
     return (
-      <Stack alignItems="center" mt={2}>
+      <Stack alignItems="center">
         <Alert severity="error">{error}</Alert>
       </Stack>
     );
@@ -34,14 +35,14 @@ export const MetricsList = () => {
 
   if (!data) {
     return (
-      <Stack alignItems="center" mt={2}>
+      <Stack alignItems="center">
         <Typography>Нет данных</Typography>
       </Stack>
     );
   }
 
   return (
-    <Stack width={"100%"} direction="row" spacing={2} mt={2}>
+    <Stack width={"100%"} direction="row" spacing={2}>
       <MetricCard
         title={"Расходы"}
         value={formatMoney(data.expenses.value)}
